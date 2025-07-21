@@ -19,7 +19,7 @@ class WeatherRepositoryImpl(
 ) : WeatherRepository {
 
     override suspend fun getWeatherByLocation(q: String): WeatherInfo {
-        val cached = dao.getLatestWeather()
+        val cached = dao.getWeatherByCity(q)
         val now = System.currentTimeMillis()
 
         val isCacheValid = cached != null && (now - cached.timestamp < CACHE_DURATION_MS)
